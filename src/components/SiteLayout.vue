@@ -1,0 +1,120 @@
+<template>
+  <div class="site-shell">
+    <BackgroundGrid v-if="shouldRenderBackground" />
+    <div class="top-glow" />
+
+    <div class="site-layer">
+      <header class="site-header" :class="{ 'header-hidden': headerHidden }">
+        <RouterLink to="/" class="site-logo" aria-label="返回首页">
+          <span class="site-logo-mark">惜</span>
+          <span class="site-logo-text">惜余年</span>
+        </RouterLink>
+
+        <nav class="site-nav" aria-label="主导航">
+          <RouterLink :class="navClass('/posts')" to="/posts">Blog</RouterLink>
+          <RouterLink :class="navClass('/projects')" to="/projects">Projects</RouterLink>
+          <a class="site-nav-icon" :href="site.github" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+            <AppIcon name="github" />
+          </a>
+          <button class="site-nav-icon" type="button" aria-label="切换明暗主题" title="切换明暗主题" @click="toggleTheme">
+            <AppIcon :name="theme === 'dark' ? 'sun' : 'moon'" />
+          </button>
+        </nav>
+      </header>
+
+      <main class="site-main">
+        <slot />
+        <div v-if="!isHomePage" class="back-parent">
+          <span class="font-mono text-[var(--c-soft)]" aria-hidden="true">&gt;</span>
+          <RouterLink :to="parentPath" class="text-link">cd ..</RouterLink>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer-line" />
+        <p>Copyright 2026 惜余年. Static blog on GitHub Pages.</p>
+        <p class="site-credit">Frontend adapted from Build-Blog under the MIT License.</p>
+      </footer>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import AppIcon from './AppIcon.vue'
+import BackgroundGrid from './BackgroundGrid.vue'
+import { site } from '../lib/page'
+
+const route = useRoute()
+const shouldRenderBackground = ref(false)
+const headerHidden = ref(false)
+const theme = ref('dark')
+let lastScrollY = 0
+let removeSystemThemeListener
+let systemThemeMediaQuery
+
+const isHomePage = computed(() => route.path === '/')
+const parentPath = computed(() => {
+  if (route.path === '/' || route.name === 'not-found')
+    return '/'
+
+  const segments = route.path.split('/').filter(Boolean)
+  segments.pop()
+  return segments.length ? `/${segments.join('/')}` : '/'
+})
+
+function navClass(prefix) {
+  return [
+    'site-nav-link',
+    route.path === prefix || route.path.startsWith(`${prefix}/`) ? 'site-nav-link-active' : '',
+  ]
+}
+
+function setDocumentTheme(nextTheme) {
+  theme.value = nextTheme
+  document.documentElement.dataset.theme = nextTheme
+  document.documentElement.classList.toggle('dark', nextTheme === 'dark')
+  const favicon = document.querySelector('#app-favicon')
+  if (favicon)
+    favicon.setAttribute('href', `${nextTheme === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg'}?v=20260528`)
+}
+
+function toggleTheme() {
+  setDocumentTheme(theme.value === 'dark' ? 'light' : 'dark')
+}
+
+function onScroll() {
+  const currentY = window.scrollY
+  if (currentY < 80) {
+    headerHidden.value = false
+  }
+  else if (currentY - lastScrollY > 10) {
+    headerHidden.value = true
+  }
+  else if (lastScrollY - currentY > 10) {
+    headerHidden.value = false
+  }
+  lastScrollY = currentY
+}
+
+onMounted(() => {
+  lastScrollY = window.scrollY
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  systemThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  setDocumentTheme(systemThemeMediaQuery.matches ? 'dark' : 'light')
+  const handleSystemThemeChange = event => setDocumentTheme(event.matches ? 'dark' : 'light')
+  systemThemeMediaQuery.addEventListener('change', handleSystemThemeChange)
+  removeSystemThemeListener = () => systemThemeMediaQuery?.removeEventListener('change', handleSystemThemeChange)
+
+  window.setTimeout(() => {
+    shouldRenderBackground.value = true
+  }, 160)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+  removeSystemThemeListener?.()
+})
+</script>
