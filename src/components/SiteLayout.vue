@@ -33,7 +33,7 @@
       <footer class="site-footer">
         <div class="site-footer-line" />
         <p>Copyright 2026 惜余年。静态博客托管于 GitHub Pages。</p>
-        <p class="site-credit">前端视觉改造自 Build-Blog，遵循 MIT License。</p>
+        <p class="site-credit">前端视觉参考开源模板，遵循 MIT 开源协议。</p>
       </footer>
     </div>
   </div>
