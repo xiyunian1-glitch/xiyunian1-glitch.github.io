@@ -1,7 +1,7 @@
 <template>
   <section class="content-shell">
     <RouterLink to="/posts" class="subtle-link back-link">
-      ← 返回 Blog
+      ← 返回文章列表
     </RouterLink>
 
     <StateBlock

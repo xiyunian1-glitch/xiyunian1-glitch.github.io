@@ -59,7 +59,7 @@
         <span v-for="item in skills" :key="item" class="inline-tag">{{ item }}</span>
       </p>
       <p>
-        你可以从 <RouterLink class="text-link" to="/posts">Blog</RouterLink> 阅读完整文章，也可以到 <RouterLink class="text-link" to="/projects">Projects</RouterLink> 快速浏览三个项目的定位。
+        你可以从 <RouterLink class="text-link" to="/posts">文章</RouterLink> 阅读完整记录，也可以到 <RouterLink class="text-link" to="/projects">项目</RouterLink> 快速浏览三个项目的定位。
       </p>
       <p>
         <a :href="site.github" target="_blank" rel="noreferrer" class="text-link">
@@ -111,9 +111,9 @@ const innerOrbitStacks = [
 const skills = ['AI 应用', 'Vue', 'React', 'Spring Boot', 'Next.js', 'Docker', 'SQL Server', '本地优先']
 
 const cards = [
-  { label: '文章', caption: 'Growth Notes', value: posts.length, tag: '静态保存' },
-  { label: '方向', caption: 'AI Practice', value: '3', tag: '持续整理' },
-  { label: '托管', caption: 'GitHub Pages', value: '0¥', tag: '无需服务器' },
+  { label: '文章', caption: '成长记录', value: posts.length, tag: '静态保存' },
+  { label: '方向', caption: 'AI 实践', value: '3', tag: '持续整理' },
+  { label: '托管', caption: '免费静态', value: '0¥', tag: '无需服务器' },
 ]
 
 function orbitItemStyle(index, total) {

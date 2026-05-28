@@ -11,8 +11,8 @@
         </RouterLink>
 
         <nav class="site-nav" aria-label="主导航">
-          <RouterLink :class="navClass('/posts')" to="/posts">Blog</RouterLink>
-          <RouterLink :class="navClass('/projects')" to="/projects">Projects</RouterLink>
+          <RouterLink :class="navClass('/posts')" to="/posts">文章</RouterLink>
+          <RouterLink :class="navClass('/projects')" to="/projects">项目</RouterLink>
           <a class="site-nav-icon" :href="site.github" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
             <AppIcon name="github" />
           </a>
@@ -26,14 +26,14 @@
         <slot />
         <div v-if="!isHomePage" class="back-parent">
           <span class="font-mono text-[var(--c-soft)]" aria-hidden="true">&gt;</span>
-          <RouterLink :to="parentPath" class="text-link">cd ..</RouterLink>
+          <RouterLink :to="parentPath" class="text-link">返回上一级</RouterLink>
         </div>
       </main>
 
       <footer class="site-footer">
         <div class="site-footer-line" />
-        <p>Copyright 2026 惜余年. Static blog on GitHub Pages.</p>
-        <p class="site-credit">Frontend adapted from Build-Blog under the MIT License.</p>
+        <p>Copyright 2026 惜余年。静态博客托管于 GitHub Pages。</p>
+        <p class="site-credit">前端视觉改造自 Build-Blog，遵循 MIT License。</p>
       </footer>
     </div>
   </div>

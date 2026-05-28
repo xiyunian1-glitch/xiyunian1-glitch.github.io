@@ -2,7 +2,7 @@
   <section class="content-shell">
     <header class="page-hero">
       <div class="page-hero-copy">
-        <p class="section-title">Projects</p>
+        <p class="section-title">项目</p>
         <h1 class="page-heading">项目索引</h1>
         <p class="page-intro">
           先把三个项目作为成长记录入口保留下来，后续可以继续补截图、仓库链接和在线演示。
