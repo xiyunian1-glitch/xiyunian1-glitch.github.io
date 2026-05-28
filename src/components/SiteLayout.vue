@@ -13,6 +13,7 @@
         <nav class="site-nav" aria-label="主导航">
           <RouterLink :class="navClass('/posts')" to="/posts">文章</RouterLink>
           <RouterLink :class="navClass('/projects')" to="/projects">项目</RouterLink>
+          <RouterLink :class="navClass('/videos')" to="/videos">AI视频</RouterLink>
           <a class="site-nav-icon" :href="site.github" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
             <AppIcon name="github" />
           </a>

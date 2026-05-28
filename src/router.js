@@ -3,6 +3,7 @@ import NotFoundPage from './pages/NotFoundPage.vue'
 import PostDetailPage from './pages/PostDetailPage.vue'
 import PostsPage from './pages/PostsPage.vue'
 import ProjectsPage from './pages/ProjectsPage.vue'
+import VideosPage from './pages/VideosPage.vue'
 
 export const routes = [
   {
@@ -24,6 +25,11 @@ export const routes = [
     path: '/projects',
     name: 'projects',
     component: ProjectsPage,
+  },
+  {
+    path: '/videos',
+    name: 'videos',
+    component: VideosPage,
   },
   {
     path: '/:pathMatch(.*)*',
