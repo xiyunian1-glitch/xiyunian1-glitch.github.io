@@ -1,5 +1,6 @@
 <template>
   <section class="content-shell">
+    <div v-if="post" class="reading-progress" :style="{ transform: `scaleX(${progress})` }" aria-hidden="true" />
     <RouterLink to="/posts" class="subtle-link back-link">
       ← 返回文章列表
     </RouterLink>
@@ -27,7 +28,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import ArticleMeta from '../components/ArticleMeta.vue'
 import StateBlock from '../components/StateBlock.vue'
@@ -37,11 +38,24 @@ import { setPageTitle } from '../lib/page'
 
 const route = useRoute()
 const post = computed(() => getPost(route.params.slug))
+const progress = ref(0)
 
 function updateTitle() {
   setPageTitle(post.value?.title || '文章不存在')
 }
 
-onMounted(updateTitle)
+function onScroll() {
+  const doc = document.documentElement
+  const scrollable = doc.scrollHeight - doc.clientHeight
+  progress.value = scrollable > 0 ? Math.min(1, doc.scrollTop / scrollable) : 0
+}
+
+onMounted(() => {
+  updateTitle()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+
 watch(() => route.params.slug, updateTitle)
+onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 </script>
