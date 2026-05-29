@@ -28,7 +28,7 @@ function getForceOnPoint(x, y, z) {
 
 async function createDotTexture() {
   const { Graphics } = await import('pixi.js')
-  const graphics = new Graphics().circle(0, 0, 1).fill(0xCCCCCC)
+  const graphics = new Graphics().circle(0, 0, 1).fill(0x0EA5E9)
   return app.renderer.generateTexture(graphics)
 }
 

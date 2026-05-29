@@ -17,9 +17,6 @@
           <a class="site-nav-icon" :href="site.github" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
             <AppIcon name="github" />
           </a>
-          <button class="site-nav-icon" type="button" aria-label="切换明暗主题" title="切换明暗主题" @click="toggleTheme">
-            <AppIcon :name="theme === 'dark' ? 'sun' : 'moon'" />
-          </button>
         </nav>
       </header>
 
@@ -50,10 +47,7 @@ import { site } from '../lib/page'
 const route = useRoute()
 const shouldRenderBackground = ref(false)
 const headerHidden = ref(false)
-const theme = ref('dark')
 let lastScrollY = 0
-let removeSystemThemeListener
-let systemThemeMediaQuery
 
 const isHomePage = computed(() => route.path === '/')
 const parentPath = computed(() => {
@@ -70,19 +64,6 @@ function navClass(prefix) {
     'site-nav-link',
     route.path === prefix || route.path.startsWith(`${prefix}/`) ? 'site-nav-link-active' : '',
   ]
-}
-
-function setDocumentTheme(nextTheme) {
-  theme.value = nextTheme
-  document.documentElement.dataset.theme = nextTheme
-  document.documentElement.classList.toggle('dark', nextTheme === 'dark')
-  const favicon = document.querySelector('#app-favicon')
-  if (favicon)
-    favicon.setAttribute('href', `${nextTheme === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg'}?v=20260528`)
-}
-
-function toggleTheme() {
-  setDocumentTheme(theme.value === 'dark' ? 'light' : 'dark')
 }
 
 function onScroll() {
@@ -103,12 +84,6 @@ onMounted(() => {
   lastScrollY = window.scrollY
   window.addEventListener('scroll', onScroll, { passive: true })
 
-  systemThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-  setDocumentTheme(systemThemeMediaQuery.matches ? 'dark' : 'light')
-  const handleSystemThemeChange = event => setDocumentTheme(event.matches ? 'dark' : 'light')
-  systemThemeMediaQuery.addEventListener('change', handleSystemThemeChange)
-  removeSystemThemeListener = () => systemThemeMediaQuery?.removeEventListener('change', handleSystemThemeChange)
-
   window.setTimeout(() => {
     shouldRenderBackground.value = true
   }, 160)
@@ -116,6 +91,5 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
-  removeSystemThemeListener?.()
 })
 </script>

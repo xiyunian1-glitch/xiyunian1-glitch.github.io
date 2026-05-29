@@ -56,7 +56,10 @@
       </p>
       <p>
         <span class="home-skills-title">我正在练习的方向</span><br>
-        <span v-for="item in skills" :key="item" class="inline-tag">{{ item }}</span>
+        <span v-for="item in skills" :key="item.name" class="skill-tag">
+          <img v-if="item.icon" :src="item.icon" :alt="item.name" class="skill-tag-icon">
+          {{ item.name }}
+        </span>
       </p>
       <p>
         你可以从 <RouterLink class="text-link" to="/posts">文章</RouterLink> 阅读完整记录，到 <RouterLink class="text-link" to="/projects">项目</RouterLink> 浏览项目定位，也可以在 <RouterLink class="text-link" to="/videos">AI视频</RouterLink> 里沉淀生成作品。
@@ -108,7 +111,16 @@ const innerOrbitStacks = [
   { name: 'vite', icon: '/my_tech_stack_icons/vite.svg' },
 ]
 
-const skills = ['AI 应用', 'Vue', 'React', 'Spring Boot', 'Next.js', 'Docker', 'SQL Server', '本地优先']
+const skills = [
+  { name: 'AI 应用' },
+  { name: 'Vue', icon: '/my_tech_stack_icons/vue.svg' },
+  { name: 'React', icon: '/my_tech_stack_icons/react.svg' },
+  { name: 'Spring Boot' },
+  { name: 'Next.js' },
+  { name: 'Docker', icon: '/my_tech_stack_icons/docker.svg' },
+  { name: 'SQL Server' },
+  { name: '本地优先' },
+]
 
 const cards = [
   { label: '文章', caption: '成长记录', value: posts.length, tag: '静态保存' },

@@ -16,8 +16,8 @@ export default defineConfig({
   ],
   transformers: [transformerDirectives()],
   shortcuts: {
-    'subtle-link': 'text-[var(--c-muted)] transition-colors duration-300 hover:text-[var(--c-text)]',
-    'section-title': 'text-12px uppercase text-[var(--c-soft)] font-mono',
+    'subtle-link': 'text-[var(--c-muted)] transition-colors duration-300 hover:text-[var(--c-accent-strong)]',
+    'section-title': 'text-12px uppercase tracking-wider text-[var(--c-accent)] font-mono',
   },
   theme: {
     colors: {
