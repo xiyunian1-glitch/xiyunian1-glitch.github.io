@@ -4,9 +4,6 @@
       <div class="page-hero-copy">
         <p class="section-title">文章</p>
         <h1 class="page-heading">成长记录</h1>
-        <p class="page-intro">
-          这里暂时只保留三篇文章，记录我把 AI、前端、后端、数据和部署串起来的过程。
-        </p>
       </div>
     </header>
 
