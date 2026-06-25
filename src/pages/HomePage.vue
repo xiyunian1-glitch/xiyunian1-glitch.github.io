@@ -54,12 +54,12 @@
 
       <dl class="home-bio">
         <div class="home-bio-row">
-          <dt class="home-bio-key">在读</dt>
-          <dd class="home-bio-val">计算机相关专业大四在读，一边在学校把工程基础补扎实，一边在一段实习里把课堂学的东西放进真实业务里磨。</dd>
+          <dt class="home-bio-key">求职中</dt>
+          <dd class="home-bio-val">计算机相关专业应届毕业，正在找一份开发工作，想把这些项目里积累的能力用进真实业务。</dd>
         </div>
         <div class="home-bio-row">
           <dt class="home-bio-key">在做</dt>
-          <dd class="home-bio-val">借这段实习，把「能跑起来」和「做得可靠」之间的差距一点点补上。</dd>
+          <dd class="home-bio-val">把做过的系统整理成能讲清楚的项目，继续打磨工程基础，为正式工作做好准备。</dd>
         </div>
         <div class="home-bio-row">
           <dt class="home-bio-key">做过</dt>
