@@ -64,7 +64,7 @@
         <div class="home-bio-row">
           <dt class="home-bio-key">做过</dt>
           <dd class="home-bio-val">
-            三个围绕 AI 落地的项目，关注点各不相同：
+            两个围绕 AI 落地的项目，关注点各不相同：
             <ul class="home-bio-projects">
               <li v-for="p in projects" :key="p.slug">
                 <RouterLink class="text-link" :to="`/posts/${p.slug}`">{{ p.name }}</RouterLink>
@@ -162,9 +162,8 @@ const skills = [
 const recentPosts = posts.slice(0, 3)
 
 const projects = [
-  { name: 'WMS 智能仓储辅助决策系统', slug: 'wms-ai-warehouse-growth', note: '第一次认真想清楚 AI 给的建议怎么落到真实业务流程里，做辅助而不是替人拍板。' },
-  { name: 'OmniAI 本地优先 AI 创作工作台', slug: 'omniai-local-first-workspace', note: '我对「数据先留在自己手里」这件事的回答，去权衡数据自主和工程代价。' },
-  { name: 'Manga2Novel 漫画转小说工具', slug: 'manga2novel-vertical-ai-experiment', note: '把一个看似简单的转换，做成可控、可复用的一条完整流水线。' },
+  { name: 'WMS 智能仓储辅助决策系统', slug: 'wms-ai-assistant-graduation', note: '我的毕业设计：第一次把 AI 从聊天框接进有登录、有数据、有权限的真实业务系统。' },
+  { name: 'AI 聚合站', slug: 'ai-aggregator-ppt-mult-agent', note: '从一个图片创作平台，长成一个用多 Agent 协作自动生成可编辑 PPT 的系统。' },
 ]
 
 const wechatShown = ref(false)
