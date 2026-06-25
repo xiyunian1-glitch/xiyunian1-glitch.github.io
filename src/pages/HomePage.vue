@@ -42,7 +42,7 @@
 
         <div class="home-hero-avatar-shell">
           <div class="home-hero-avatar-glow" />
-          <img class="home-hero-avatar-image" src="/avatar.png" alt="惜余年的头像">
+          <img class="home-hero-avatar-image" src="/avatar.png?v=20260625" alt="惜余年的头像">
         </div>
       </div>
     </section>
